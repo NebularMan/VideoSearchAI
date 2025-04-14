@@ -1,0 +1,45 @@
+/* Result.css */
+.results-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* This will center all content horizontally */
+  justify-content: center; /* This will center content vertically if needed */
+  height: 100vh; /* Ensure it takes up the full height of the viewport */
+  text-align: center; /* Center text content */
+}
+
+.video-player {
+  width: 600px;  /* Ensuring same width as in Home page */
+  height: auto;  /* Maintain aspect ratio */
+  border-radius: 10px;  /* Optional: Make it look more polished */
+  margin-top: 20px;  /* Optional: Add spacing above the video */
+}
+
+.search-section {
+  margin-top: 20px;
+}
+
+.search-results {
+  margin-top: 20px;
+  list-style-type: none;
+  padding: 0;
+}
+
+.search-results li {
+  cursor: pointer;
+  margin: 5px 0;
+}
+
+.search-results li:hover {
+  background-color: #f0f0f0;
+  padding: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

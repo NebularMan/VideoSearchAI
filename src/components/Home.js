@@ -39,8 +39,9 @@ function Home() {
       formData.append('searchText', searchText);
 
       // Send POST request to Flask backend
+      const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || window.location.origin;
       try {
-        const response = await fetch('/search_video', {
+        const response = await fetch(`${BACKEND_URL}/search_video`, {
           method: 'POST',
           body: formData,
         });

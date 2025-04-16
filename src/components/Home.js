@@ -40,7 +40,7 @@ function Home() {
 
       // Send POST request to Flask backend
       try {
-        const response = await fetch('http://localhost:5000/search_video', {
+        const response = await fetch('/search_video', {
           method: 'POST',
           body: formData,
         });

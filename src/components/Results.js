@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../Result.css';
 
@@ -8,16 +8,15 @@ function Results() {
   const { videoUrl, searchText, results } = location.state || {};
   const videoRef = useRef(null);
 
-  // States to hold the search term and results
   const [searchTerm, setSearchTerm] = useState(searchText || '');
-  const [frequency, setFrequency] = useState(results.length);
+  const [filteredResults, setFilteredResults] = useState(results || []);
 
   const handleSearch = () => {
     const lowerTerm = searchTerm.toLowerCase();
     const matches = results.filter(entry =>
       entry.text.toLowerCase().includes(lowerTerm)
     );
-    setFrequency(matches.length);
+    setFilteredResults(matches);
   };
 
   const handleSeek = (time) => {
@@ -34,26 +33,33 @@ function Results() {
       {/* Video player */}
       <video ref={videoRef} controls src={videoUrl} className="video-player" />
 
+      {/* Search input */}
       <div className="search-section" style={{ marginTop: '20px' }}>
         <input
           type="text"
-          placeholder="Search within video..."
+          placeholder="Search within results..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <button onClick={handleSearch}>Search</button>
       </div>
 
-      {results.length > 0 ? (
+      {filteredResults.length > 0 ? (
         <>
-          <p>Found <strong>{frequency}</strong> matches.</p>
-          <ul className="search-results">
-            {results.map((result, index) => (
-              <li key={index} onClick={() => handleSeek(result.time)}>
-                <strong>{result.time}s:</strong> {result.text}
-              </li>
+          <p>Found <strong>{filteredResults.length}</strong> matches.</p>
+          <div className="snapshot-grid">
+            {filteredResults.map((result, index) => (
+              <div key={index} className="snapshot-item" onClick={() => handleSeek(result.time)}>
+                <img 
+                  src={result.snapshot_url} 
+                  alt={`Snapshot at ${result.time}s`} 
+                  className="snapshot-img"
+                />
+                <div className="timestamp">{result.time}s</div>
+                <div className="snapshot-text">{result.text}</div>
+              </div>
             ))}
-          </ul>
+          </div>
         </>
       ) : (
         <p>No results found.</p>

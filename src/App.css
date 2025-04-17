@@ -85,3 +85,39 @@ video {
     width: 100%;
   }
 }
+.snapshot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.snapshot-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  text-align: center;
+}
+
+.snapshot-item:hover {
+  transform: scale(1.03);
+  background-color: #f9f9f9;
+}
+
+.snapshot-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.timestamp {
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.snapshot-text {
+  font-size: 0.9em;
+  margin-top: 4px;
+}
